@@ -1,0 +1,30 @@
+<div class="col-xl-6 childPage">
+    <h2>Login</h2>
+    <hr />  
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text"  placeholder="Enter username" formControlName="username" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"  placeholder="Enter password" formControlName="password" class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input id="rememberme" type="checkbox"  formControlName="rememberme" />
+            <label for="rememberme">Remember me</label>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Login</button>
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+    </div>

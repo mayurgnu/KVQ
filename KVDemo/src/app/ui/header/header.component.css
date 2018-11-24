@@ -1,0 +1,80 @@
+div a {
+    padding-right: 1rem ;
+}
+
+.floatLeft li {
+    float: left;
+}
+.md-extension{
+color: white;    
+}
+.dropdown:after {
+    content: "";
+    position: absolute; 
+    bottom: -10px;
+    height: auto;
+    width: 100%;
+    left: 0;
+    display: block;
+}
+
+.dropdown:hover > ul.dropdown-menu  {
+    display: grid;
+    background-color: #343a40;
+    color: white !important;
+}
+/* slidebar button */
+.hamburger {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 96px;
+    height: 96px;
+    font-size: 0;
+    text-indent: -9999px;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: 0;
+  }
+  
+  
+  /* .hamburger span {
+    display: block;
+    position: absolute;
+    top: 44px;
+    left: 18px;
+    right: 18px;
+    height: 8px;
+    background: #ffffff;
+  } */
+  
+  .hamburger span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 8px;
+    background-color: #ffffff;
+    content: "";
+  }
+  .hamburger span::before,
+  .hamburger span::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 8px;
+    background-color: #ffffff;
+    content: "";
+  }
+  
+  .hamburger span::before {
+    top: -20px;
+  }
+  
+  .hamburger span::after {
+    bottom: -20px;
+  } 

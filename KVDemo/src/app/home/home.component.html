@@ -1,0 +1,39 @@
+<div class="childPage">
+  <h3>Userlist</h3>
+  <hr>  
+  <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="3">
+    <thead>
+      <tr>
+        <th>
+          <mfDefaultSorter by="firstname">Firstname</mfDefaultSorter>
+        </th>
+        <th>
+          <mfDefaultSorter by="lastname">Lastname</mfDefaultSorter>
+        </th>
+        <th>
+          <mfDefaultSorter by="username">Username</mfDefaultSorter>
+        </th>
+        <th>contactno</th>
+        <th>
+          <mfDefaultSorter by="address">Address</mfDefaultSorter>
+        </th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of mf.data">
+        <td>{{item.firstname}}</td>
+        <td>{{item.lastname}}</td>
+        <td>{{item.username | uppercase}}</td>
+        <td>{{item.contactno}}</td>
+        <td>{{item.address}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[3,6,9]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
