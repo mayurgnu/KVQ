@@ -1,0 +1,38 @@
+select * from [User]
+update [User] set password = 'oS45lipEasQ=' where User_Id =34
+=========================================================================================================================
+select * from languagetranslation order by LanguageTranslation_ID desc
+
+select LanguageTranslation_ID,Text_Code,Translationvalue from languagetranslation
+ where Translationvalue like '%Trainer fee%'
+
+
+--insert into LanguageTranslation values('DB_Text_Back_To_Purchase','EN','Purchase','sa','','','')
+--insert into LanguageTranslation values('DB_Text_Back_To_Purchase','HU','HU_Purchase','sa','','','')
+
+--update languagetranslation set  Translationvalue = 'Back To Credit Purchase' where LanguageTranslation_ID in (772)
+--update languagetranslation set  Translationvalue = 'HU_Back To Credit Purchase' where LanguageTranslation_ID in (773)
+=========================================================================================================================
+select * from systemparameter where systemparameter_id = 12
+select * from Email
+--update systemparameter set Value = 587 where systemparameter_id = 30
+--tcmtestcommunication@gmail.com
+--tcm54321
+--mesetenisz.noreply@gmail.com  12
+--Mese54321 24
+UPDATE systemparameter SET Value='mesetenisz.noreply@gmail.com' WHERE systemparameter_id = 12
+UPDATE systemparameter SET Value='Mese54321' where systemparameter_id = 24
+============================================================================================================================
+select top 1 * from CoursePackageFee
+CoursePackage
+select top 1  * from Payment
+select top 1  * from [User]
+--select * from CoursePackage
+--select * from CoursePackageFee
+--select * from Payment order by  Payment_ID desc
+--select * from PaymentType_Enum
+--select * from PaymentMethod_Enum
+--delete from UserCoursePackage where User_Id = 34
+select * from UserCoursePackage order by  UserCoursePackage_ID desc
+select ActionDueDate,* from Payment order by  Payment_ID desc
+select * from CoursePackageFee order by  CoursePackageFee_ID desc
