@@ -53,7 +53,7 @@ namespace KVDemoApi
             {
                 app.UseHsts();
             }
-
+            app.UseCors("MAYUR");
             app.UseHttpsRedirection();
             app.UseMvc();
         }

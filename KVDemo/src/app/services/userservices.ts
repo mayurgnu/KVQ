@@ -19,6 +19,18 @@ export class UserService {
     return this.http.post(environment.apiUrl + 'User/SaveUser', obj);
   }
 
+  // UploadFile(obj: any) {
+  //   const objData = { 'id': 1 , 'name' : 'gnu' };
+  //   return this.http.post(environment.apiUrl + 'User/UploadFile', objData);
+  // }
+  PostList() {
+    const obj = [{ 'id': 1, 'name': 'gnu' }, { 'id': 2, 'name': 'gnu2' }, { 'id': 3, 'name': 'gnu3' }];
+    return this.http.post(environment.apiUrl + 'User/PostList', obj);
+  }
+  UploadFile(file: any) {
+    return this.http.post(environment.apiUrl + 'User/UploadFile', file);
+  }
+
   //   getUserById(id: number) {
   //     return this.http.get<User>(this.baseUrl + '/' + id);
   //   }

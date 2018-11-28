@@ -40,3 +40,17 @@ E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\K
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.csproj.CopyComplete
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.dll
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.deps.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.runtimeconfig.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.runtimeconfig.dev.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.dll
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Core.dll
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\bin\Debug\netcoreapp2.1\KVDemoApi.Core.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.csprojAssemblyReference.cache
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.csproj.CoreCompileInputs.cache
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.AssemblyInfoInputs.cache
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.AssemblyInfo.cs
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.csproj.CopyComplete
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.dll
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Infrastructure\obj\Debug\netcoreapp2.1\KVDemoApi.Infrastructure.pdb

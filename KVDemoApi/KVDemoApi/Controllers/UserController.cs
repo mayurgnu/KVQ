@@ -11,10 +11,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace KVDemoApi.Controllers
 {
-    [EnableCors(PolicyName = "MAYUR")]
+    //[EnableCors(PolicyName = "MAYUR")]
     [ApiController]
     [Route("api/User")]
     public class UserController : Controller
@@ -26,7 +28,7 @@ namespace KVDemoApi.Controllers
             uow = _uow;
             _hostingEnvironment = hostingEnvironment;
         }
-       [Route("GetAllUser")]
+        [Route("GetAllUser")]
         public IActionResult GetAllUser()
         {
             var lst = uow.TblUser_Repository.GetAll();
@@ -45,11 +47,24 @@ namespace KVDemoApi.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(ex.Message);   
+                return Ok(ex.Message);
             }
-
         }
-        [HttpPost, DisableRequestSizeLimit]
+        [HttpPost]
+        [Route("PostList")]
+        public JsonResult PostList([FromBody]List<MyClass> obj)
+        {
+            try
+            {
+                return new JsonResult("Success PostList");
+            }
+            catch (System.Exception ex)
+            {
+                return new JsonResult("Exception:- " + ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("UploadFile")]
         public JsonResult UploadFile()
         {
             try
@@ -71,14 +86,17 @@ namespace KVDemoApi.Controllers
                         file.CopyTo(stream);
                     }
                 }
-                return new JsonResult(null);
+                return new JsonResult("Success UploadFile");
             }
             catch (System.Exception ex)
             {
                 return new JsonResult("Exception:- " + ex.Message);
-
             }
-
         }
     }
+}
+public class MyClass
+{
+    public int id { get; set; }
+    public string name { get; set; }
 }

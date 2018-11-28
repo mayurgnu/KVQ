@@ -20,3 +20,13 @@ E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.C
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.AssemblyInfo.cs
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.dll
 E:\MyComplteDemo\KV\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\bin\Debug\netcoreapp2.1\KVDemoApi.Core.deps.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\bin\Debug\netcoreapp2.1\KVDemoApi.Core.runtimeconfig.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\bin\Debug\netcoreapp2.1\KVDemoApi.Core.runtimeconfig.dev.json
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\bin\Debug\netcoreapp2.1\KVDemoApi.Core.dll
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\bin\Debug\netcoreapp2.1\KVDemoApi.Core.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.csproj.CoreCompileInputs.cache
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.AssemblyInfoInputs.cache
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.AssemblyInfo.cs
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.dll
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.pdb

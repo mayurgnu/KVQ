@@ -5,7 +5,9 @@
     border-style: groove;
     padding: 0.5%;
  }
-.grooveClass1 {
-    border-style: groove;
-    padding: 0.5%;
+ ul li a {
+   color: white
+}
+ul li a:hover {
+    color: yellow
  }
