@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticlesComponent } from './articles/articles.component';
 import { PragimComponent } from './pragim/pragim.component';
-import { FormsModule } from '../../../node_modules/@angular/forms';
+import { ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -23,7 +23,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
