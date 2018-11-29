@@ -30,3 +30,4 @@ D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.Assem
 D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.AssemblyInfo.cs
 D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.dll
 D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.pdb
+D:\MPP\KVQ\KVDemoApi\KVDemoApi.Core\obj\Debug\netcoreapp2.1\KVDemoApi.Core.csprojAssemblyReference.cache

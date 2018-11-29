@@ -5,8 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="wwwroot\NewFolder\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

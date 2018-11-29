@@ -1,0 +1,598 @@
+<link href="~/Scripts/intl-tel-input/css/intlTelInput.css" rel="stylesheet" />
+
+<div id="DataTransferModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align:center"><span id="eventTitle">@Model.lblUser.lblTransferAcknowledgement</span></h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-justify xs-m-0">@Model.lblUser.lblTransferAcknowledgementDetail_1</p>
+                <br />
+                <p class="text-justify">@Model.lblUser.lblTransferAcknowledgementDetail_2<a href="@simplePayLink" target="_blank">@simplePayLink</a></p>
+            </div>
+            <div class="modal-footer" style="text-align:center">
+                <button type="button" class="btn__login btn_danger" data-dismiss="modal">@close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="login__section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="login__box">
+                    <div class="login__title text-center">
+                        @if (Model.User_ID > 0)
+                        {
+                            <h3><strong>@Model.lblUser.lblEdit_Customer</strong></h3>
+                        }
+                        else
+                        { <h3><strong>@Model.lblUser.lblCreate_Customer</strong></h3>}
+                    </div>
+                    <div class="login__body">
+                        @using (Ajax.BeginForm("SaveCustomer", "User",
+                          new AjaxOptions
+                          {
+                              OnSuccess = "OnSuccess",
+                              OnFailure = "OnFailure",
+                              LoadingElementId = "progress"
+                          }, new { @id = "idProfileForm" }))
+                        {
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <h4 class="HRTitle">@Model.lblUser.lblBasic_Information:</h4>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.User_ID)
+                            if (Model.User_ID > 0)
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="email">@Model.lblLogin.lblLoginName:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                @Html.TextBoxFor(model => model.LoginName,
+                                                new
+                                                {
+                                                    @class = "form-control",
+                                                    name = "LoginName",
+                                                    @readonly = true,
+                                                    placeholder = Model.lblUser.lblEnter + " " + Model.lblLogin.lblLoginName,
+                                                })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(model => model.Password)
+                                @Html.HiddenFor(model => model.ConfirmPassword)
+                            }
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="firstName">@Model.lblUser.lblFirstName:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(model => model.FirstName,new
+                                       {
+                                           @class = "form-control",
+                                           name = "firstName",
+                                           placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblFirstName,
+                                           data_validation = "required",
+                                           data_validation_error_msg = Model.lblUser.lblFirstName + " " + Model.lblUser.lblIsRequired,
+                                           //@onkeypress = "return isOnlyAlpha(event, this)"
+                                       })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">@Model.lblUser.lblLastName:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(model => model.LastName,
+                                      new
+                                      {
+                                          @class = "form-control",
+                                          name = "lastName",
+                                          placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblLastName,
+                                          data_validation = "required",
+                                          data_validation_error_msg = Model.lblUser.lblLastName + " " + Model.lblUser.lblIsRequired,
+                                      })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="lang">@Model.lblUser.lblUser_Type:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-language"></i></span>
+                                            @Html.DropDownList("UserType_ID", new SelectList(ViewBag.UserTypeList, "UserType_ID", "Name"), Model.lblUser.SelectUserType,
+                                          new
+                                          {
+                                              @class = "form-control",
+                                              name = "lang",
+                                              data_validation = "required",
+                                              data_validation_error_msg = Model.lblUser.lblUser_Type + " " + Model.lblUser.lblIsRequired,
+                                          })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            if (Model.User_ID == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="pwd_confirmation">@Model.lblUser.lblPassword:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                                @Html.PasswordFor(model => model.Password,
+                                          new
+                                          {
+                                              @class = "form-control",
+                                              name = "pwd_confirmation",
+                                              placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblPassword,
+                                              data_validation = "required",
+                                              data_validation_error_msg = Model.lblUser.lblPassword + " " + Model.lblUser.lblIsRequired,
+                                          })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="confPwd">@Model.lblUser.lblConfirmPassword:</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                                @Html.PasswordFor(model => model.ConfirmPassword,
+                                          new
+                                          {
+                                              @class = "form-control",
+                                              name = "confPwd",
+                                              placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblConfirmPassword,
+                                              data_validation = "required confirmation",
+                                              data_validation_confirm = "Password",
+                                              data_validation_error_msg = Model.lblUser.lblConfirmPassword + " " + Model.lblUser.lblIsRequired,
+                                              data_validation_error_msg_confirmation = Model.lblUser.lblPasswords_Doesnt_Match,
+                                          })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">@Model.lblUser.lblEmailAddress:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            @Html.TextBoxFor(model => model.ContactEmail,
+                                      new
+                                      {
+                                          @class = "form-control",
+                                          name = "email",
+                                          placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblEmailAddress,
+                                          data_validation = "required email",
+                                          @readonly = "readonly",
+                                          data_validation_error_msg = Model.lblUser.lblEmailAddress + " " + Model.lblUser.lblIsRequired,
+                                      })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblMobileNo:</label>
+                                        @Html.TextBoxFor(model => model.ContactNo,
+                                      new
+                                      {
+                                          @class = "form-control",
+                                          name = "mobile",
+                                          placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblMobileNo,
+                                          data_validation = "required",
+                                          data_validation_error_msg = Model.lblUser.lblMobileNo + " " + Model.lblUser.lblIsRequired,
+                                          @onkeypress = "return isPhoneNumber(event, this)"
+                                      })
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="InvTyp">@Model.lblUser.lblInvoice_Type:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-files-o"></i></span>
+                                            @Html.DropDownList("InvoiceType_ID", new SelectList(ViewBag.InvoiceTypes, "InvoiceType_ID", "Name"), Model.lblUser.lblSelectInvoicetype, new { @class = "form-control", name = "InvTyp" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="lang">@Model.lblUser.lblLanguage:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-language"></i></span>
+                                            @Html.DropDownList("Language_Code", new SelectList(ViewBag.LanguagesList, "Language_Code", "LanguageName"), Model.lblUser.lblSelectLanguage,
+                                          new
+                                          {
+                                              @class = "form-control",
+                                              name = "lang",
+                                              data_validation = "required",
+                                              data_validation_error_msg = Model.lblUser.lblLanguage + " " + Model.lblUser.lblIsRequired,
+                                          })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblDate_of_birth:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            @Html.TextBoxFor(model => model.DateOfBirth,
+                                                  new
+                                                  {
+                                                      @class = "form-control",
+                                                      name = "DateOfBirth",
+                                                      placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblDate_of_birth
+                                                  })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblPlace_of_birth:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                            @Html.TextBoxFor(model => model.PlaceOfBirth,new
+                                                      {
+                                                          @class = "form-control",
+                                                          name = "PlaceOfBirth",
+                                                          placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblPlace_of_birth
+                                                      })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblMothers_name:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(model => model.MotherName,new
+                                                      {
+                                                          @class = "form-control",
+                                                          name = "MotherName",
+                                                          placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblMothers_name
+                                                      })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblMothers_mobile_no:</label>
+                                        @Html.TextBoxFor(model => model.MotherContactPhone,
+                                                  new
+                                                  {
+                                                      @class = "form-control",
+                                                      name = "MotherContactPhone",
+                                                      placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblMothers_mobile_no,
+                                                      @onkeypress = "return isPhoneNumber(event, this)"
+                                                  })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblFathers_name:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(model => model.FatherName,
+                                                      new
+                                                      {
+                                                          @class = "form-control",
+                                                          name = "FatherName",
+                                                          placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblFathers_name
+                                                      })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="mobile">@Model.lblUser.lblFathers_mobile_no:</label>
+                                        @Html.TextBoxFor(model => model.FatherContactPhone,new
+                                        {
+                                            @class = "form-control",
+                                            name = "FatherContactPhone",
+                                            placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblFathers_mobile_no,
+                                            @onkeypress = "return isPhoneNumber(event, this)"
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <h4 class="HRTitle">@Model.lblUser.lblBilling_Address_Details:</h4>
+                                        </div>
+                                    </div>
+                                    <div id="billAddDet">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="TaxNumber">@Model.lblUser.lblBillingName:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingName,
+                                                             new
+                                                             {
+                                                                 @class = "form-control",
+                                                                 name = "BillingName",
+                                                                 placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblBillingName,
+                                                             })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="TaxNumber">@Model.lblUser.lblTaxNumber:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        @Html.TextBoxFor(model => model.TaxNumber,
+                                                             new
+                                                             {
+                                                                 @class = "form-control",
+                                                                 name = "TaxNumber",
+                                                                 placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblTaxNumber,
+                                                             })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="street">@Model.lblUser.lblStreet_Name:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-road"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressStreetName,
+                                                       new { @class = "form-control",
+                                                           name = "street", placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblStreet_Name,
+                                                           data_validation = "required",
+                                                           data_validation_error_msg = Model.lblUser.lblStreet_Name + " " + Model.lblUser.lblIsRequired,
+                                                       })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="house">@Model.lblUser.lblHouseNumber:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressHouseNumber, new { @class = "form-control", name = "house", placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblHouseNumber })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="building">@Model.lblUser.lblBuilding:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressBuilding, new { @class = "form-control", name = "building", placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblBuilding })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="city">@Model.lblUser.lblCity:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressCity,
+                                                       new { @class = "form-control", name = "city",
+                                                           placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblCity,
+                                                           data_validation = "required",
+                                                           data_validation_error_msg = Model.lblUser.lblCity + " " + Model.lblUser.lblIsRequired
+                                                       })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="postalcode">@Model.lblUser.lblPostalCode:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressPostalCode,
+                                                       new { @class = "form-control", name = "postalcode",
+                                                           placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblPostalCode,
+                                                           data_validation = "required",
+                                                           data_validation_error_msg = Model.lblUser.lblPostalCode + " " + Model.lblUser.lblIsRequired
+                                                       })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="state">@Model.lblUser.lblState:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                                        @Html.TextBoxFor(model => model.BillingAddressState, new { @class = "form-control", name = "state", placeholder = Model.lblUser.lblEnter + " " + Model.lblUser.lblState })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="country">@Model.lblUser.lblCountry:</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                        @Html.DropDownListFor(model => model.BillingAddressCountryCode, new SelectList(ViewBag.Countries, "Country_Code", "CountryName"), Model.lblUser.lblSelectCountry, new { @class = "form-control", name = "country", placeholder = "Enter Country" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <h4 class="HRTitle">@OtherInformation:</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="">
+                                        @if (Model.User_ID == 0)
+                                        {
+                                            <label class="chkbx">
+                                                @Html.CheckBoxFor(model =>model.GDPRAcceptanceFlag,
+                                                                  new
+                                                                  {
+
+                                                                      name = "GDPRAcceptanceFlag",
+                                                                      @checked = "checked",
+                                                                      data_validation = "required",
+                                                                      data_validation_error_msg = errClubPolicy
+                                                                  })
+                                                <span></span>
+                                                @Model.lblUser.lblGDPRAcceptance<br /><a href="@ViewBag.DataHandlingPolicy" target="_blank">@Model.lblUser.lblDataHandlingPolicy</a>
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="chkbx">
+                                                @Html.CheckBoxFor(model =>model.GDPRAcceptanceFlag,
+                                                                  new
+                                                                  {
+
+                                                                      name = "GDPRAcceptanceFlag",
+                                                                      onclick = "return false"
+                                                                  })
+                                                <span></span>
+                                                @Model.lblUser.lblGDPRAcceptance<br /><a href="@ViewBag.DataHandlingPolicy" target="_blank">@Model.lblUser.lblDataHandlingPolicy</a>
+                                            </label>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div>
+
+                                        @if (Model.User_ID == 0)
+                                        {<label class="chkbx">
+                                                @Html.CheckBoxFor(model => model.SimplePayAcceptanceFlag,
+                                                 new
+                                                 {
+
+                                                     name = "SimplePayAcceptanceFlag",
+                                                     @checked = "checked",
+                                                     data_validation = "required",
+                                                     data_validation_error_msg = errAcceptTerms
+                                                 })
+                                                <span></span>
+                                                @Model.lblUser.lblSimplePayAcceptance <br /> <a href="#" data-toggle="modal" data-target="#DataTransferModal">@Model.lblUser.lblTransferAcknowledgement</a>
+                                            </label>}
+                                        else
+                                        {<label class="chkbx">
+                                                @Html.CheckBoxFor(model => model.SimplePayAcceptanceFlag,
+                                                new
+                                                {
+
+                                                   name = "SimplePayAcceptanceFlag",
+                                                   onclick = "return false"
+                                                })
+                                                <span></span>
+                                                @Model.lblUser.lblSimplePayAcceptance <br />  <a href="#" data-toggle="modal" data-target="#DataTransferModal">@Model.lblUser.lblTransferAcknowledgement</a>
+                                            </label>
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="">
+                                            <label class="chkbx">
+                                                @Html.CheckBoxFor(model => model.AcquirerFeeAppliesFlag,
+                                                new
+                                                {
+
+                                                    name = "AcquirerFeeAppliesFlag",
+                                                    onclick = "onClickAcquired(this)"
+                                                })
+                                                @Model.lblUser.lblAcquired
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="AcquirerTrainer_ID">@Model.lblUser.lblAcquiredBy:</label>
+                                        <div id="divAcquirerTrainer_ID" class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                            @Html.DropDownListFor(model => model.AcquirerTrainer_ID,
+                                           new SelectList(ViewBag.TrainerList, "id", "text"),
+                                           Model.lblUser.lblSelectTrainer, new {
+                                               @class = "form-control", name = "AcquirerTrainer_ID",
+                                               data_validation = "required",
+                                               data_validation_error_msg = errTrainer + " " + Model.lblUser.lblIsRequired
+                                           })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="TaxNumber">@Model.lblUser.lblNotes:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-sticky-note"></i></span>
+                                            @Html.TextAreaFor(model => model.Notes,
+                                                 new
+                                                 {
+                                                     @class = "form-control noteclass",
+                                                     name = "Notes",
+                                                     placeholder = Model.lblUser.lblEnter + " "+ Model.lblUser.lblNotes,
+                                                 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn__login btn_danger" onclick="onCancel()">
+                                        <i class="fa fa-close"></i> @Model.lblUser.lblCancel
+                                    </button>
+                                </div>
+                                <div class="col-md-6 sm-text-right">
+                                    <button type="submit" class="btn__login">
+                                        <svg id="progress" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" data-icon="spinner-third" data-prefix="fas" class="svg-inline--fa fa-spinner-third fa-w-16 fa-spin">
+                                            <path fill="currentColor" d="M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z"></path>
+                                        </svg>
+                                        <i class="fa fa-circle-o-notch fa-spin" style="display:none;"></i>&nbsp;&nbsp;@Model.lblUser.lblSave
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts{
